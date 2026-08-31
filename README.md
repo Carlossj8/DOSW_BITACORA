@@ -130,6 +130,12 @@ Se realizan multiples operaciones analiticas con streams para agrupar por tipo y
 
 ![imagen20](docs/images/s2p20.png)
 
+### Reto Mewtwo: Reporte de Poder Élite por Tipo
+Propuesta: Se plantea un desafio para calcular el poder de combate acumulado de los Pokémon de alto nivel agrupados por su tipo elemental y organizados en un ranking de mayor a menor poder.
+Solucion: Se seleccionan los Pokémon con nivel mayor o igual a 50 mediante filter, se normaliza el tipo a mayusculas con map, se agrupan los poderes de combate por tipo elemental usando groupingBy, se calcula la suma acumulada de cada tipo mediante reduce y finalmente se ordenan los grupos en forma descendente con sorted.
+
+![imagenRetoMewtwo](docs/images/s2pRetoMewtwo.png)
+
 ## Ejercicios que contienen Azúcar Sintáctico en lugar de lambdas
 
 - Ejercicio 1: Pokemon::getNombre en la operacion map

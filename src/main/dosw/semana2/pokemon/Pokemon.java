@@ -39,6 +39,13 @@ public class Pokemon {
         this.region = region;
     }
 
+    public Pokemon(String nombre, String tipo, int nivel, double poderCombate) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.nivel = nivel;
+        this.poderCombate = poderCombate;
+    }
+
     public Pokemon(String nombre, String tipo, int nivel, double poderCombate, String region, boolean legendario) {
         this.nombre = nombre;
         this.tipo = tipo;
