@@ -120,6 +120,16 @@ Se ordenan los Pokémon de forma descendente de acuerdo con su poder de combate 
 
 ![imagen18](docs/images/s2p18.png)
 
+### Ejercicio 19: Top 3 Entrenadores
+Se ordenan los entrenadores aplicando comparadores encadenados por medallas, poder acumulado y nombre, y se seleccionan los tres mejores mediante limit.
+
+![imagen19](docs/images/s2p19.png)
+
+### Ejercicio 20: Pokédex Analítica
+Se realizan multiples operaciones analiticas con streams para agrupar por tipo y region con groupingBy y counting, contabilizar legendarios con filter y count, calcular el promedio de nivel con mapToInt y average, y encontrar el Pokémon mas fuerte con max.
+
+![imagen20](docs/images/s2p20.png)
+
 ## Ejercicios que contienen Azúcar Sintáctico en lugar de lambdas
 
 - Ejercicio 1: Pokemon::getNombre en la operacion map
@@ -129,3 +139,4 @@ Se ordenan los Pokémon de forma descendente de acuerdo con su poder de combate 
 - Ejercicio 8: Pokemon::isPuedeEvolucionar en la operacion filter y Pokemon::getNombre en la operacion map
 - Ejercicio 10: Pokemon::getNombre en la operacion map
 - Ejercicio 16: Entrenador::esExperimentado en la operacion filter
+- Ejercicio 19: Entrenador::getMedallas, Entrenador::calcularPoderTotalEquipo y Entrenador::getNombre en el comparador encadenado de sorted

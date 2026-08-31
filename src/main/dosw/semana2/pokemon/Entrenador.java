@@ -21,6 +21,12 @@ public class Entrenador {
         this.equipo = equipo;
     }
 
+    public Entrenador(String nombre, int medallas, List<Pokemon> equipo) {
+        this.nombre = nombre;
+        this.medallas = medallas;
+        this.equipo = equipo;
+    }
+
     public Entrenador(Long id, String nombre, int medallas, List<Pokemon> equipo) {
         this.id = id;
         this.nombre = nombre;
