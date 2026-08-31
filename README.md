@@ -126,7 +126,7 @@ Se ordenan los entrenadores aplicando comparadores encadenados por medallas, pod
 ![imagen19](docs/images/s2p19.png)
 
 ### Ejercicio 20: Pokedex Analitica
-Se realizan multiples operaciones analiticas con streams para agrupar por tipo y region con groupingBy y counting, contabilizar legendarios con filter y count, calcular el promedio de nivel con mapToInt y average, y encontrar el Pokemon mas fuerte con max.
+Se realizan multiples operaciones analiticas con streams para agrupar por tipo y region con groupingBy y counting, contabilizar legendarios con filter and count, calcular el promedio de nivel con mapToInt y average, y encontrar el Pokemon mas fuerte con max.
 
 ![imagen20](docs/images/s2p20.png)
 
@@ -217,3 +217,73 @@ Justificacion frente a una solucion sin patrones:
 Sin Adapter y Facade, los desarrolladores tendrian que conocer y replicar manualmente los 6 a 8 pasos de inicializacion tecnica cada vez que desearan realizar un pago. Ademas, el codigo cliente deberia lidiar directamente con metodos antiguos e incompatibles (como convertir manualmente decimales a centavos). Al combinar ambos patrones, Adapter resuelve la incompatibilidad de interfaces y Facade oculta la complejidad del proceso, logrando un codigo limpio, desacoplado y de facil mantenimiento.
 
 ![imagenEj5Taller4](docs/images/s4t4e5.png)
+
+### Ejercicio 6: Motor de Recomendaciones
+
+Rol de cada patron:
+- Strategy: Encapsula los distintos algoritmos de recomendacion (GenreStrategy, HistoryStrategy, PopularityStrategy) bajo la interfaz comun RecommendationAlgorithm. Permite cambiar el criterio de recomendacion dinamicamente en tiempo de ejecucion sin reiniciar la aplicacion.
+- Observer: Notifica automaticamente a todos los componentes interesados (HomePageComponent, NotificationService, SuggestedListComponent) cuando el perfil del usuario (Subject) actualiza sus preferencias o cambia de algoritmo.
+
+Interaccion entre los dos patrones:
+Cuando el usuario cambia sus preferencias de recomendacion, la clase UserProfile asigna la nueva estrategia (Strategy) e inmediatamente invoca notificarObservadores(). Cada observador (Observer) reacciona al evento obteniendo el nuevo listado de contenidos generado por el algoritmo activo para actualizar la interfaz grafica o enviar notificaciones en tiempo real sin necesidad de polling.
+
+Justificacion frente a una solucion sin patrones:
+Sin Strategy, el motor de recomendaciones requeriria condicionales acoplados para evaluar cada tipo de algoritmo. Sin Observer, la aplicacion tendria que consultar periodicamente (polling) o invocar manualmente cada componente de la interfaz para refrescar las recomendaciones. La combinacion de ambos patrones garantiza que cambiar la logica de recomendacion sea transparente y que la interfaz reaccione instantaneamente manteniendo el principio de desacoplamiento.
+
+![imagenEj6Taller4](docs/images/s4t4e6.png)
+
+### Ejercicio 7: Flujo de Aprobación de Documentos
+
+Rol de cada patron:
+- Chain of Responsibility: Encadena secuencialmente los validadores del documento (AutorHandler, LiderHandler, JuridicoHandler). Cada manejador evalua el documento y decide si aprueba su paso o lo transfiere al siguiente eslabón de la cadena.
+- State: Modela el ciclo de vida del documento mediante clases que representan sus estados (DraftState, InReviewState, ApprovedState, RejectedState). Encapsula las reglas y operaciones permitidas para cada transicion de estado, eliminando sentencias condicionales (switch/if) en el documento.
+
+Interaccion entre los dos patrones:
+A medida que el documento recorre la cadena de responsabilidad, cada manejador invoca los metodos approve() o reject() del objeto Document. La clase Document delega la transicion a su estado interno actual (State), el cual actualiza el estado del documento al siguiente nivel. De esta manera, Chain of Responsibility controla el flujo de revision por etapas y State controla la validez de las transiciones del documento.
+
+Justificacion frente a una solucion sin patrones:
+Sin Chain of Responsibility, el proceso de revision requeriria una clase monolitica llena de condicionales rigidos para ejecutar las validaciones en orden. Sin State, la clase Document contendria multiples sentencias switch para verificar qué operaciones estan permitidas en cada estado. La combinacion de ambos patrones asegura que sea muy sencillo agregar nuevas etapas de revision o nuevos estados sin modificar la logica existente.
+
+![imagenEj7Taller4](docs/images/s4t4e7.png)
+
+### Ejercicio 8: Sistema de Pedidos en Restaurante
+
+Rol de cada patron:
+- Builder: Permite construir el pedido paso a paso eligiendo tamaño, carne, toppings y acompañamientos. El metodo build() garantiza que el pedido este completo y valido antes de existir, evitando un constructor con multiples parametros dificil de mantener.
+- Observer: Notifica automaticamente a los subsistemas (KitchenService, BillingService, DeliveryService) cuando el pedido se confirma. El Order no conoce directamente a ninguno de ellos; simplemente llama confirm() y cada observer reacciona de forma independiente.
+
+Interaccion entre los dos patrones:
+El Builder construye el Order y registra los observers antes de llamar build(), de modo que el objeto resultante es completamente inmutable. Al invocar order.confirm(), el Order recorre su lista de observers y notifica a cada uno. Builder actua en el momento de la construccion y Observer actua en el momento de la confirmacion, cubriendo dos etapas distintas del ciclo de vida del pedido sin que ninguna de las dos se interfiera.
+
+Justificacion frente a una solucion sin patrones:
+Sin Builder, crear un pedido personalizado requeriria un constructor con todos los ingredientes como parametros, lo que hace el codigo fragil y dificil de leer. Sin Observer, el pedido tendria que conocer y llamar directamente a cocina, facturacion y domicilios, generando acoplamiento fuerte. Si se agrega un nuevo subsistema habria que modificar el Order. Con ambos patrones, agregar un ingrediente o un nuevo servicio de notificacion no afecta el resto del sistema.
+
+![imagenEj8Taller4](docs/images/s4t4e8.png)
+
+### Ejercicio 9: Sistema de Autenticación Empresarial
+
+Rol de cada patron:
+- Strategy: Encapsula los diferentes mecanismos de autenticacion (PasswordStrategy, GoogleStrategy, MicrosoftStrategy, TokenStrategy, BiometricStrategy) detras de una interfaz comun (AuthStrategy). El AuthService recibe la estrategia adecuada segun el tipo de usuario y delega la autenticacion sin saber como funciona internamente cada mecanismo.
+- Chain of Responsibility: Encadena las validaciones post-autenticacion en secuencia (CredentialValidator → PermissionValidator → LocationValidator → TimeValidator). Cada validador decide si el acceso continua al siguiente o lo bloquea, sin que ningun validador conozca a los demas.
+
+Interaccion entre los dos patrones:
+Strategy actua primero: el AuthService selecciona el mecanismo correcto y autentica al usuario, produciendo un AuthResult. Ese resultado es el dato que recibe la cadena: Chain of Responsibility lo recorre de validador en validador y concede o deniega el acceso final. Los dos patrones cubren fases distintas del proceso: Strategy responde "quién eres" y Chain responde "si puedes entrar".
+
+Justificacion frente a una solucion sin patrones:
+Sin Strategy, el AuthService tendria un bloque de condicionales (if tipo == "google", if tipo == "biometrico"...) que crece cada vez que se agrega un metodo nuevo. Sin Chain of Responsibility, todas las validaciones estarian en un unico metodo lleno de condicionales anidados, dificil de extender o reordenar. Con ambos patrones, agregar un nuevo metodo de autenticacion o una nueva validacion solo requiere crear una clase nueva sin tocar el codigo existente.
+
+![imagenEj9Taller4](docs/images/s4t4e9.png)
+
+### Ejercicio 10: Aplicación de Edición de Imágenes
+
+Rol de cada patron:
+- Decorator: Aplica filtros de forma acumulativa sobre la imagen. GrayscaleDecorator, SepiaDecorator, BrightnessDecorator, ContrastDecorator y NoiseReductionDecorator envuelven la imagen uno sobre otro. La imagen base (BaseImage) nunca se modifica; cada filtro agrega una capa encima. Se pueden apilar en cualquier orden sin que los filtros existentes se alteren.
+- Command: Encapsula cada operacion de filtro como un objeto con execute() y undo(). ApplyFilterCommand guarda el estado de la imagen antes de aplicar el Decorator, lo que permite revertir cualquier filtro de forma individual. El ImageEditor mantiene dos stacks: uno con los comandos ejecutados (para undo) y otro con los deshechos (para redo).
+
+Interaccion entre los dos patrones:
+Cuando el usuario aplica un filtro, el Command llama execute(), que envuelve la imagen actual con el Decorator correspondiente y apila el comando en el historial. Cuando el usuario hace undo, el Command restaura la referencia a la imagen previa al Decorator, quitando efectivamente esa capa. Decorator aporta la estructura de filtros apilados y Command aporta la capacidad de navegar ese historial hacia atras y hacia adelante.
+
+Justificacion frente a una solucion sin patrones:
+Sin Decorator, cada combinacion de filtros requeriria una subclase distinta o modificar directamente los pixeles de la imagen, generando una explosion de clases o perdida del estado original. Sin Command, implementar undo requeriria guardar copias completas de la imagen en cada paso, consumiendo mucha memoria, o limitarse a deshacer solo la ultima accion. La combinacion permite filtros acumulativos de bajo costo (solo referencias) y un historial de operaciones individual y eficiente.
+
+![imagenEj10Taller4](docs/images/s4t4e10.png)
