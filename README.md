@@ -370,3 +370,93 @@ Justificacion frente a una solucion sin patrones:
 Sin Decorator, cada combinacion de filtros requeriria una subclase distinta o modificar directamente los pixeles de la imagen, generando una explosion de clases o perdida del estado original. Sin Command, implementar undo requeriria guardar copias completas de la imagen en cada paso, consumiendo mucha memoria, o limitarse a deshacer solo la ultima accion. La combinacion permite filtros acumulativos de bajo costo (solo referencias) y un historial de operaciones individual y eficiente.
 
 ![imagenEj10Taller4](docs/images/s4t4e10.png)
+
+## Semana 4 - Ejercicios clase requisitos
+
+### Ejercicio 1: Diagrama de Contexto TechCupFutbol
+
+![diagramaDeContextoTech](docs/images/diagramaDeContextoTech.png)
+
+### Ejercicio 2: Requisitos del Sistema
+
+
+#### Requisitos Funcionales
+
+* Gestión de Identidad, Autenticación y Control de Acceso
+  * Permitir el registro diferenciado de usuarios utilizando correos institucionales para estudiantes, profesores, administrativos y graduados, y correos Gmail para familiares y árbitros.
+  * Autenticar usuarios mediante un código de un solo uso enviado al correo electrónico durante el registro, inicio de sesión inicial y acciones sensibles.
+  * Gestionar el acceso mediante los roles de Jugador, Capitán, Árbitro y Organizador, garantizando que el organizador no pueda otorgar permisos de administrador.
+  * Permitir la inactivación de usuarios únicamente si no pertenecen a un equipo vinculado a un torneo activo o en progreso.
+
+* Gestión de Usuarios y Perfiles Deportivos
+  * Permitir a los jugadores crear y actualizar su perfil deportivo especificando posición de juego, dorsal y foto.
+  * Desplegar el número de dorsal sobre el color del equipo como avatar predeterminado cuando un jugador no suba una fotografía.
+  * Habilitar el envío y recepción de solicitudes e invitaciones entre jugadores y capitanes para la conformación de equipos.
+  * Restringir la modificación del dorsal o perfil deportivo cuando el jugador esté asignado a un equipo participando en un torneo activo o en progreso.
+
+* Gestión de Equipos
+  * Permitir al capitán crear equipos definiendo nombre, colores y escudo.
+  * Validar que la plantilla cuente con un mínimo de 7 y un máximo de 12 jugadores.
+  * Asegurar que un jugador pertenezca a un solo equipo y que los dorsales sean únicos dentro de la plantilla.
+  * Validar que más del 50 por ciento de los integrantes del equipo pertenezcan a las carreras de Ingeniería de Sistemas, Inteligencia Artificial, Ciberseguridad o Ingeniería Estadística.
+  * Ofrecer una vista de plantilla interactiva en formato de álbum de cromos para consultar la información y estadísticas de los jugadores.
+
+* Gestión de Torneos y Calendarios
+  * Permitir al organizador administrar el ciclo de vida del torneo con los estados Borrador, Activo, En progreso y Finalizado.
+  * Adjuntar la reglamentación oficial en PDF y registrar las canchas con su ubicación física dentro del campus.
+  * Permitir a los capitanes inscribir sus equipos mediante el envío del comprobante de pago para su posterior verificación por parte del organizador.
+  * Visualizar un mapa interactivo del campus que muestre la ubicación de las canchas, los partidos programados y el estado del encuentro en tiempo real.
+  * Generar de forma automática las llaves eliminatorias del torneo.
+  * Mantener oculta la información detallada de las plantillas de los equipos inscritos hasta que el torneo cambie al estado En progreso.
+  * Proporcionar acceso al historial completo de torneos finalizados para la consulta de estadísticas, alineaciones y resultados.
+
+* Competencia y Alineaciones
+  * Permitir al capitán organizar la alineación titular de 7 jugadores en el campo mediante la funcionalidad de arrastrar y soltar desde la banca.
+  * Disponer de las formaciones tácticas 3-2-1, 2-3-1, 4-1-1 y 1-3-2.
+  * Calcular y actualizar de forma automática la tabla de posiciones con partidos jugados, ganados, empatados, perdidos, goles a favor, goles en contra, diferencia de gol y puntos.
+
+* Módulo de Arbitraje en Vivo
+  * Proporcionar al árbitro herramientas para el control del tiempo como iniciar, pausar, reanudar, añadir tiempo extra y finalizar el encuentro.
+  * Registrar eventos en tiempo real mediante botones de un solo toque para goles, tarjetas amarillas, tarjetas rojas y sustituciones con el minuto exacto.
+  * Incorporar confirmaciones visuales, sonoras y vibración háptica en la interfaz táctil del árbitro.
+
+* Gestión de Logística
+  * Registrar y controlar la entrega de refrigerios a jugadores y equipos para evitar entregas duplicadas.
+  * Administrar el inventario y trazabilidad de los materiales de dotación como petos, balones y kits.
+
+* Estadísticas y Sanciones
+  * Registrar métricas individuales y colectivas incluyendo goles, asistencias, faltas, tarjetas, minutos jugados y promedios por partido.
+  * Publicar los rankings del torneo correspondientes al máximo goleador, tabla de juego limpio y máximos asistentes.
+  * Aplicar reglas de sanción automática que suspendan para la siguiente fecha a los jugadores que acumulen tarjetas amarillas o reciban una tarjeta roja.
+  * Generar y exportar reportes consolidados en formatos PDF y CSV para la administración del torneo.
+
+* Servicio de Comunicaciones
+  * Habilitar un chat grupal exclusivo para los miembros de cada equipo, creado automáticamente al conformar la plantilla.
+  * Proveer un chat de soporte con un chatbot encargado de responder preguntas frecuentes sobre reglas, fechas y pagos, con opción de escalar al organizador.
+  * Permitir el intercambio de mensajes directos e individuales entre jugadores.
+
+#### Requisitos No Funcionales
+
+* Arquitectura de Software
+  * Estructurar el backend en microservicios desacoplados según los dominios funcionales definidos, coordinados a través de un API Gateway.
+  * Desarrollar el backend utilizando Spring Boot, aplicando arquitectura por capas y patrones de diseño limpios.
+  * Construir la interfaz de usuario web utilizando React y TypeScript.
+
+* Gestión de Datos
+  * Utilizar PostgreSQL para la persistencia de datos relacionales y transaccionales del sistema.
+  * Emplear MongoDB para el almacenamiento de archivos e imágenes como fotos de perfil, escudos de equipos y comprobantes de pago.
+
+* Accesibilidad e Inclusión
+  * Cumplir con los lineamientos de accesibilidad WCAG 2.1 nivel AA.
+  * Evitar el uso exclusivo del color para transmitir información, integrando íconos, textos y patrones para usuarios con daltonismo.
+  * Asegurar un contraste mínimo de 4.5 a 1, navegación completa por teclado, foco visible y compatibilidad con lectores de pantalla.
+  * Ofrecer alternativas visuales y vibración para todas las alertas sonoras generadas en el módulo de arbitraje.
+
+* Seguridad y Auditoría
+  * Almacenar las contraseñas cifradas en la base de datos y manejar la autorización de usuarios mediante tokens JWT.
+  * Registrar logs de auditoría para eventos clave como autenticación, uso de códigos OTP, modificaciones en partidos y actualización de estadísticas.
+
+* Entorno de Desarrollo y Gestión
+  * Utilizar Maven para la gestión de dependencias y construcción del proyecto.
+  * Administrar el código fuente en GitHub aplicando flujos de trabajo basados en ramas.
+  * Implementar la metodología Scrum organizada en ciclos de un semana y gestionar las tareas a través de Jira.
