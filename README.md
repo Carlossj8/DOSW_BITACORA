@@ -1,7 +1,5 @@
 # DOSW_BITACORA
 Bitacora clase Desarrollo y Operaciones orientado por Software
-<<<<<<< Updated upstream
-=======
 
 ## Semana 1 - Streams Basicos
 
@@ -81,4 +79,37 @@ Se utiliza filter sobre la colección de objetos Pokémon para seleccionar exclu
 Se emplea map para transformar la lista de objetos Pokémon extrayendo únicamente el atributo nombre de cada uno y se recopila el resultado mediante collect.
 
 ![imagen10](docs/images/s2p10.png)
->>>>>>> Stashed changes
+
+### Ejercicio 11: Poder Promedio
+Se transforma el flujo de valores de poder de combate a tipos primitivos mediante mapToDouble y se calcula su media empleando la operacion terminal average.
+
+![imagen11](docs/images/s2p11.png)
+
+### Ejercicio 12: Campeón Regional
+Se determina el Pokémon con mayor poder de combate del equipo utilizando la operacion terminal max junto con un comparador numerico por el atributo poderCombate.
+
+![imagen12](docs/images/s2p12.png)
+
+### Ejercicio 13: Organizar por Tipo
+Se agrupan los Pokémon segun su tipo mediante la operacion groupingBy y se recopilan exclusivamente los nombres pertenecientes a cada grupo.
+
+![imagen13](docs/images/s2p13.png)
+
+### Ejercicio 14: Organizar por Región
+Se utiliza groupingBy para clasificar a los Pokémon de acuerdo con su region de procedencia, generando un mapa con los nombres correspondientes a cada region.
+
+![imagen14](docs/images/s2p14.png)
+
+### Ejercicio 15: Maestro de Gimnasios
+Se procesa el flujo de entrenadores aplicando la operacion terminal max junto con un comparador por el atributo medallas para encontrar al entrenador con mas medallas.
+
+![imagen15](docs/images/s2p15.png)
+
+## Ejercicios que contienen Azúcar Sintáctico en lugar de lambdas
+
+- Ejercicio 1: Pokemon::getNombre en la operacion map
+- Ejercicio 2: String::toUpperCase en la operacion map
+- Ejercicio 3: Integer::sum en la operacion reduce
+- Ejercicio 4: Pokemon::getNivel en la operacion max con Comparator.comparingInt
+- Ejercicio 8: Pokemon::isPuedeEvolucionar en la operacion filter y Pokemon::getNombre en la operacion map
+- Ejercicio 10: Pokemon::getNombre en la operacion map
