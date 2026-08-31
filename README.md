@@ -77,6 +77,27 @@ Se implementa el patrón de diseño de comportamiento Chain of Responsibility pa
 
 ![imagen8](docs/images/s3s8.png)
 
+### Ejercicio 9: Acciones de personaje de videojuego (Command)
+
+Se implementa el patrón de diseño de comportamiento Command para encapsular cada una de las acciones de un personaje de videojuego (caminar, saltar, atacar y defenderse) en objetos independientes que implementan la interfaz Command (`execute()`). El personaje `GameCharacter` actúa como receptor (Receiver) definiendo la lógica concreta de cada acción. Los comandos concretos (`WalkCommand`, `JumpCommand`, `AttackCommand` y `DefendCommand`) mantienen una referencia al personaje y delegan la ejecución correspondiente. Por su parte, la clase `GameController` actúa como invocador (Invoker) ejecutando el comando recibido mediante `pressButton(command)` sin conocer los detalles de implementación interna de la acción ni del personaje.
+
+![imagen9](docs/images/s3s9.png)
+
+### Ejercicio 10: Recorrido turístico por Roma (Iterator)
+
+Se implementa el patrón de diseño de comportamiento Iterator para permitir la secuenciación y exploración de los lugares emblemáticos de Roma (Colosseum, Roman Forum, Trevi Fountain, Pantheon y Spanish Steps) sin exponer la estructura de datos interna subyacente. La interfaz `Iterator<T>` declara los métodos `hasNext()` y `next()`, mientras que la interfaz `Aggregate<T>` define el método de fabricación `createIterator()`. La clase contenedora `TourRoute` almacena internamente un arreglo privado de objetos `Place` e implementa la interfaz de agregación instanciando un iterador privado (`RomeIterator`). De este modo, la clase cliente `Tourist` recorre la ruta turística mediante `exploreTour(route)` operando únicamente a través de la interfaz abstracta del iterador.
+
+![imagen10](docs/images/s3s10.png)
+
+### Ejercicio 11: Aplicación de navegación y rutas (Strategy)
+
+Se implementa el patrón de diseño de comportamiento Strategy para intercambiar dinámicamente los algoritmos de cálculo de ruta según la preferencia del usuario (más rápida, turística o más económica) sin modificar el código cliente de la aplicación. La interfaz `RouteStrategy` establece el contrato común mediante el método `calculateRoute()`. Las estrategias concretas (`FastestRoute`, `ScenicRoute` y `CheapestRoute`) encapsulan los algoritmos específicos de navegación. La clase contexto `NavigationApp` mantiene una referencia a la estrategia activa y permite cambiarla en tiempo de ejecución a través de `setRouteStrategy()`, ejecutando el cálculo correspondiente al invocar `startNavigation()`.
+
+![imagen11](docs/images/s3s11.png)
+
+
+
+
 
 
 
