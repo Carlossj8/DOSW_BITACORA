@@ -175,3 +175,45 @@ Justificacion frente a una solucion sin patrones:
 Sin patrones, la clase Pedido deberia conocer directamente cada canal de comunicacion y contener logica dispersa para formatear mensajes en HTML, texto o JSON segun el estado. Esto generaria un alto acoplamiento y violaria el principio de Responsabilidad Unica (Single Responsibility Principle). La combinacion de Observer y Factory Method asegura que agregar un nuevo canal o cambiar el formato de los mensajes no requiera modificar la clase Pedido ni los demas observadores.
 
 ![imagenEj2Taller4](docs/images/s4t4e2.png)
+
+### Ejercicio 3: Sistema de Reportes Empresariales
+
+Rol de cada patron:
+- Template Method: Estructura la secuencia fija de pasos para la generacion de reportes en la clase base ReportGenerator mediante el metodo final generate(). Mantiene fijos los pasos de obtencion de datos y procesamiento, mientras delega el formato (applyFormat) y la exportacion (exportFile) a las subclases concretas.
+- Factory Method: Desacopla la instanciacion de los reportes concretos a traves de ReportFactory, permitiendo construir instancias de PdfReport, ExcelReport o CsvReport segun el parametro solicitado por el usuario sin instanciar clases concretas directamente en el cliente.
+
+Interaccion entre los dos patrones:
+El cliente solicita un tipo de reporte a ReportFactory (por ejemplo, PDF). La fabrica construye e instancia la subclase adecuada (PdfReport). Posteriormente, el cliente invoca el metodo generate() en la instancia recibida. Template Method ejecuta en orden la secuencia fija de 4 pasos, llamando a la implementacion especifica de PdfReport para aplicar el formato y exportar el archivo.
+
+Justificacion frente a una solucion sin patrones:
+Sin patrones, el cliente deberia controlar mediante condicionales cual reporte instanciar y ademas duplicaria los pasos fijos (obtener datos y procesar informacion) en cada clase de reporte. Si el flujo general de generacion cambiara, habria que modificar múltiples clases. Con Template Method se centraliza el esqueleto del algoritmo eliminando duplicacion, y con Factory Method se desacopla la creacion del objeto concreto de la logica cliente.
+
+![imagenEj3Taller4](docs/images/s4t4e3.png)
+
+### Ejercicio 4: Plataforma de Videojuegos — Personajes
+
+Rol de cada patron:
+- Builder: Permite la construccion paso a paso de un personaje complejo al inicio del juego mediante la clase CharacterBuilder (configurando armadura, arma y habilidades). Evita la sobrecarga de constructores con multiples parametros y simplifica la creacion de personajes base.
+- Decorator: Añade habilidades y efectos especiales de forma dinamica en tiempo de ejecucion (como ShieldDecorator, SpeedDecorator e InvisibilityDecorator) envolviendo al personaje base sin modificar su clase original.
+
+Interaccion entre los dos patrones:
+Al iniciar la partida, Builder construye la instancia base del personaje con todas sus propiedades iniciales. Durante la partida, a medida que el jugador activa efectos o mejoras temporales, los Decorators envuelven dinamicamente la instancia del personaje acumulando comportamientos sobre el metodo attack(). Al finalizar la bonificacion temporal, el envoltorio se remueve sin alterar el objeto base.
+
+Justificacion frente a una solucion sin patrones:
+Sin Builder, la creacion de personajes requeriria constructores masivos difíciles de mantener. Sin Decorator, se generaria una explosion combinatoria de subclases (por ejemplo, para 5 poderes combinables se necesitarian 32 subclases distintas). Al combinar Builder y Decorator, se mantiene la creacion limpia y se permite combinar poderes dinamicamente con solo 5 envoltorios y 1 clase base.
+
+![imagenEj4Taller4](docs/images/s4t4e4.png)
+
+### Ejercicio 5: Integración con Sistema Bancario Antiguo
+
+Rol de cada patron:
+- Adapter: Adapta e integra la interfaz del servicio bancario antiguo (LegacyBankService) a la interfaz moderna PaymentProcessor mediante la clase LegacyBankAdapter. Traduce llamadas incompatibles, convirtiendo por ejemplo montos decimales a valores enteros en centavos y redirigiendo la ejecucion al metodo legacy correspondiente.
+- Facade: Proporciona una interfaz simplificada (BankFacade) que encapsula y oculta la complejidad del flujo del banco antiguo (como la apertura de sockets, autenticacion, inicializacion de sesion y cierre de conexion).
+
+Interaccion entre los dos patrones:
+El desarrollador llama al metodo simplificado procesarPago(monto) expuesto por BankFacade. La clase Facade orquesta en orden todos los pasos de infraestructura requeridos por el banco antiguo y, al llegar al momento del pago, delega la transaccion a LegacyBankAdapter. El Adapter traduce la llamada al formato legacy (monto a centavos) y llama a LegacyBankService para realizar el cobro.
+
+Justificacion frente a una solucion sin patrones:
+Sin Adapter y Facade, los desarrolladores tendrian que conocer y replicar manualmente los 6 a 8 pasos de inicializacion tecnica cada vez que desearan realizar un pago. Ademas, el codigo cliente deberia lidiar directamente con metodos antiguos e incompatibles (como convertir manualmente decimales a centavos). Al combinar ambos patrones, Adapter resuelve la incompatibilidad de interfaces y Facade oculta la complejidad del proceso, logrando un codigo limpio, desacoplado y de facil mantenimiento.
+
+![imagenEj5Taller4](docs/images/s4t4e5.png)
