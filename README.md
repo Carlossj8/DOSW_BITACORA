@@ -110,6 +110,16 @@ Se utiliza filter con referencia a metodo para evaluar la condicion de experienc
 
 ![imagen16](docs/images/s2p16.png)
 
+### Ejercicio 17: Equipo Más Poderoso
+Se calcula la suma total del poder de combate del equipo de cada entrenador mediante mapToDouble y sum, y luego se obtiene al entrenador con la mayor acumulacion aplicando la operacion terminal max.
+
+![imagen17](docs/images/s2p17.png)
+
+### Ejercicio 18: Top 5 Pokémon Más Fuertes
+Se ordenan los Pokémon de forma descendente de acuerdo con su poder de combate mediante sorted y se seleccionan unicamente los cinco primeros lugares con la operacion limit.
+
+![imagen18](docs/images/s2p18.png)
+
 ## Ejercicios que contienen Azúcar Sintáctico en lugar de lambdas
 
 - Ejercicio 1: Pokemon::getNombre en la operacion map

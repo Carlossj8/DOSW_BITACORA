@@ -16,6 +16,11 @@ public class Entrenador {
         this.medallas = medallas;
     }
 
+    public Entrenador(String nombre, List<Pokemon> equipo) {
+        this.nombre = nombre;
+        this.equipo = equipo;
+    }
+
     public Entrenador(Long id, String nombre, int medallas, List<Pokemon> equipo) {
         this.id = id;
         this.nombre = nombre;
@@ -57,6 +62,15 @@ public class Entrenador {
 
     public boolean esExperimentado() {
         return this.medallas > 5;
+    }
+
+    public double calcularPoderTotalEquipo() {
+        if (equipo == null) {
+            return 0.0;
+        }
+        return equipo.stream()
+                .mapToDouble(p -> p.getPoderCombate())
+                .sum();
     }
 
     @Override
