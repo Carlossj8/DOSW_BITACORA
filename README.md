@@ -47,4 +47,39 @@ Se implementa el patrón de diseño creacional Builder para separar el proceso d
 
 ![imagen3](docs/images/s3s3.png)
 
+### Ejercicio 4: Estación de servicio inteligente para vehículos (Adapter)
+
+Se implementa el patrón de diseño estructural Adapter para permitir que la estación de servicio (SmartGasStation) interactúe de forma unificada con distintos tipos de cargadores eléctricos (FastElectricCharger y SlowElectricCharger) mediante la interfaz estándar FuelService. Dado que las interfaces de los cargadores eléctricos son incompatibles con el método supply(amount) de la gasolinera tradicional, las clases adaptadoras FastChargerAdapter y SlowChargerAdapter convierten la solicitud en litros a su equivalente en kWh (multiplicando los litros por 8.0 en el modelo rápido y por 7.0 en el modelo lento) y delegan la ejecución a los métodos específicos fastCharge y slowCharge. De esta manera, el sistema central funciona de forma transparente utilizando únicamente la interfaz objetivo.
+
+![imagen4](docs/images/s3s4.png)
+
+### Ejercicio 5: Figuras geométricas y colores (Bridge)
+
+Se implementa el patrón de diseño estructural Bridge para desacoplar la abstracción de las formas geométricas (Forma) de la implementación de los colores (Color), evitando una explosión combinatoria de subclases por herencia múltiple. La clase abstracta Forma mantiene una referencia por composición hacia la interfaz Color. Las subclases de formas (Circulo y Cuadrado) delegan la obtención del color a las clases concretas de color (Rojo y Azul) mediante el método aplicarColor(). De esta forma, es posible agregar nuevas formas geométricas o nuevos colores de manera independiente sin modificar la jerarquía existente.
+
+![imagen5](docs/images/s3s5.png)
+
+### Ejercicio 6: Inventario de bodega y cajas compuestas (Composite)
+
+Se implementa el patrón de diseño estructural Composite para tratar de manera uniforme tanto a productos individuales (Product) como a contenedores o cajas compuestas (Box) que pueden incluir otros productos o cajas anidadas. La interfaz común Item define la operación getPrice(). La clase hoja Product retorna su precio individual, mientras que la clase compuesta Box mantiene una lista de elementos (List<Item>) y calcula su precio total de forma recursiva al recorrer todos sus ítems contenidos. Esto permite que el cliente WarehouseApp consulte el precio total de cualquier paquete o elemento sin necesidad de diferenciar si se trata de un objeto simple o una estructura compleja de cajas.
+
+![imagen6](docs/images/s3s6.png)
+
+### Ejercicio 7: Simulador naval y módulos de barcos (Decorator)
+
+Se implementa el patrón de diseño estructural Decorator para añadir capacidades dinámicas (ataque y defensa) y descripciones a un barco en tiempo de ejecución sin alterar su clase original ni recurrir a la creación masiva de subclases combinatorias. La interfaz Barco define los métodos principales (getDescripcion(), poderAtaque() y defensa()), implementados de forma base por la clase BarcoBase. La clase abstracta BarcoBaseDecorador actúa como envoltorio base manteniendo una referencia a un objeto de tipo Barco. Los decoradores concretos (BlindajeDecorador, RadarDecorador, MisilesDecorador y AntiTorpedosDecorador) extiende de dicho envoltorio y agregan sus bonificaciones correspondientes sobre las métricas del barco envuelto. Además, mediante la API de Streams y Lambdas de Java, la aplicación permite encadenar y aplicar dinámicamente cualquier lista de módulos de configuración sobre la embarcación.
+
+![imagen7](docs/images/s3s7.png)
+
+### Ejercicio 8: Controles migratorios de ingreso (Chain of Responsibility)
+
+Se implementa el patrón de diseño de comportamiento Chain of Responsibility para procesar secuencialmente las verificaciones de ingreso a un país (pasaporte/visa, antecedentes, motivos del viaje y aprobación final). La interfaz ControlMigratorio y su clase abstracta base ControlMigratorioHandler establecen la estructura del manejador y el enlace al siguiente elemento de la cadena mediante setSiguiente(). Cada manejador concreto (PasaporteControl, AntecedentesControl, MotivoViajeControl y AprobacionFinalControl) evalúa la solicitud (IngresoRequest) y decide si aprueba el paso delegando la ejecución al siguiente eslabón mediante super.procesar(request), o si detiene el proceso inmediatamente en caso de rechazo, desacoplando completamente al solicitante de los controles individuales.
+
+![imagen8](docs/images/s3s8.png)
+
+
+
+
+
+
 
