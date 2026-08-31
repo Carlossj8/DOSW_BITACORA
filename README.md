@@ -105,6 +105,11 @@ Se procesa el flujo de entrenadores aplicando la operacion terminal max junto co
 
 ![imagen15](docs/images/s2p15.png)
 
+### Ejercicio 16: Entrenadores Experimentados
+Se utiliza filter con referencia a metodo para evaluar la condicion de experiencia de cada entrenador y obtener unicamente a quienes cuentan con mas de cinco medallas.
+
+![imagen16](docs/images/s2p16.png)
+
 ## Ejercicios que contienen Azúcar Sintáctico en lugar de lambdas
 
 - Ejercicio 1: Pokemon::getNombre en la operacion map
@@ -113,3 +118,4 @@ Se procesa el flujo de entrenadores aplicando la operacion terminal max junto co
 - Ejercicio 4: Pokemon::getNivel en la operacion max con Comparator.comparingInt
 - Ejercicio 8: Pokemon::isPuedeEvolucionar en la operacion filter y Pokemon::getNombre en la operacion map
 - Ejercicio 10: Pokemon::getNombre en la operacion map
+- Ejercicio 16: Entrenador::esExperimentado en la operacion filter

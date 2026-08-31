@@ -55,8 +55,12 @@ public class Entrenador {
         this.equipo = equipo;
     }
 
+    public boolean esExperimentado() {
+        return this.medallas > 5;
+    }
+
     @Override
     public String toString() {
-        return nombre + "(" + medallas + " medallas)";
+        return nombre + "(" + medallas + ")";
     }
 }
