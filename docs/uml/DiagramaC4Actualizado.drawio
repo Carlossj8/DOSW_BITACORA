@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="C4-Contexto" id="sSohTNOT_N9AzJ8HmeTk">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Sistema Central (C4 Software System) -->
+        <mxCell id="techcup" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#ffffff;align=center;verticalAlign=middle;fontStyle=0;" value="&lt;b&gt;Tech Cup Fútbol&lt;/b&gt;&#xa;&lt;i&gt;[Software System]&lt;/i&gt;&#xa;&#xa;Plataforma web centralizada que gestiona el ciclo completo del torneo." vertex="1">
+          <mxGeometry height="140" width="240" x="460" y="320" as="geometry" />
+        </mxCell>
+
+        <!-- Personas / Usuarios (C4 Person) -->
+        <mxCell id="p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;align=center;verticalAlign=middle;" value="&lt;b&gt;Estudiante / Jugador&lt;/b&gt;&#xa;&lt;i&gt;[Person]&lt;/i&gt;&#xa;&#xa;Registro, perfil deportivo, búsqueda de equipo y consulta de resultados." vertex="1">
+          <mxGeometry height="100" width="200" x="80" y="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;align=center;verticalAlign=middle;" value="&lt;b&gt;Capitán&lt;/b&gt;&#xa;&lt;i&gt;[Person]&lt;/i&gt;&#xa;&#xa;Crea y administra equipo, gestiona inscripción, alineaciones y jugadores." vertex="1">
+          <mxGeometry height="100" width="200" x="80" y="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;align=center;verticalAlign=middle;" value="&lt;b&gt;Árbitro&lt;/b&gt;&#xa;&lt;i&gt;[Person]&lt;/i&gt;&#xa;&#xa;Gestiona el partido en vivo: tiempo, goles, tarjetas y sustituciones." vertex="1">
+          <mxGeometry height="100" width="200" x="80" y="320" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;align=center;verticalAlign=middle;" value="&lt;b&gt;Organizador&lt;/b&gt;&#xa;&lt;i&gt;[Person]&lt;/i&gt;&#xa;&#xa;Crea torneos, aprueba inscripciones, gestiona árbitros y ve dashboard." vertex="1">
+          <mxGeometry height="100" width="200" x="80" y="450" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#08427B;strokeColor=#052E56;fontColor=#ffffff;align=center;verticalAlign=middle;" value="&lt;b&gt;Graduado / Familiar&lt;/b&gt;&#xa;&lt;i&gt;[Person]&lt;/i&gt;&#xa;&#xa;Registro con Gmail y participación como jugador o capitán." vertex="1">
+          <mxGeometry height="100" width="200" x="80" y="580" as="geometry" />
+        </mxCell>
+
+        <!-- Sistemas Externos (C4 External System) -->
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#ffffff;align=center;verticalAlign=middle;" value="&lt;b&gt;Servidor de correo (SMTP)&lt;/b&gt;&#xa;&lt;i&gt;[External System]&lt;/i&gt;&#xa;&#xa;Envío de OTPs, login y notificaciones." vertex="1">
+          <mxGeometry height="100" width="200" x="880" y="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#ffffff;align=center;verticalAlign=middle;" value="&lt;b&gt;Servicio de mapas&lt;/b&gt;&#xa;&lt;i&gt;[External System]&lt;/i&gt;&#xa;&#xa;Ubicación de canchas en el campus." vertex="1">
+          <mxGeometry height="100" width="200" x="880" y="340" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#ffffff;align=center;verticalAlign=middle;" value="&lt;b&gt;Almacenamiento de archivos&lt;/b&gt;&#xa;&lt;i&gt;[External System]&lt;/i&gt;&#xa;&#xa;Guarda fotos, escudos y comprobantes." vertex="1">
+          <mxGeometry height="100" width="200" x="880" y="530" as="geometry" />
+        </mxCell>
+
+        <!-- Conexiones / Relaciones -->
+        <mxCell id="rel1" edge="1" parent="1" source="p1" target="techcup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel2" edge="1" parent="1" source="p2" target="techcup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel3" edge="1" parent="1" source="p3" target="techcup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel4" edge="1" parent="1" source="p4" target="techcup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel5" edge="1" parent="1" source="p5" target="techcup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel6" edge="1" parent="1" source="techcup" target="s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel7" edge="1" parent="1" source="techcup" target="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel8" edge="1" parent="1" source="techcup" target="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
